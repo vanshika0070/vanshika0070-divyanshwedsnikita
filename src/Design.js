@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import "./style.css";
+import "./Style.css";
 
 /* ========================================
    WEDDING DETAILS
@@ -476,7 +476,7 @@ function Reception() {
    MAIN APP
 ======================================== */
 
-export default function App() {
+export default function Design() {
   const [opened, setOpened] = useState(false);
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [muted, setMuted] = useState(false);
