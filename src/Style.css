@@ -123,19 +123,24 @@ p {
 }
 
 /* ========================================
-   4. FULL SCREEN GATE
+   4. FULL SCREEN IMAGE GATE
 ======================================== */
 
 .gate {
   position: fixed;
   inset: 0;
   z-index: 100;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+
   overflow: hidden;
-  background: #520120;
+
+  background: var(--wine-dark);
+
+  perspective: 1600px;
+
   transition:
     opacity 0.75s ease,
     visibility 0s linear 0.75s;
@@ -148,20 +153,22 @@ p {
 }
 
 
-/* Background behind the doors */
-.envelope-back {
+/* ========================================
+   5. IMAGE DOORS
+======================================== */
+
+/* Door container */
+
+.envelope-pocket {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(
-      circle at center,
-      var(--wine),
-      var(--wine-dark) 65%,
-      var(--ink)
-    );
-}
 
+  display: flex;
+
+  z-index: 2;
+
+  transform-style: preserve-3d;
+}
 
 /* Both doors */
 
@@ -169,45 +176,73 @@ p {
 .gate-right {
   position: absolute;
   top: 0;
+
   width: 50%;
   height: 100%;
-  background:#000;
-  border: 1px solid rgba(197, 161, 107, 0.5);
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
-  transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+
+  border: 2px solid var(--gold);
   backface-visibility: hidden;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 1.6s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* main Left door */
+/* Left image half */
+
+/* Left gate */
 .gate-left {
   left: 0;
+
+  background-image: url("/images/gate-left.png");
+  background-position: left center;
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+
   transform-origin: left center;
-  border-right: 1px solid var(--gold);
-  border-top: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
-   border-left: 2px solid var(--gold);
 }
 
-/* main Right door */
+/* Right gate */
 .gate-right {
   right: 0;
+
+  background-image: url("/images/gate-right.png");
+  background-position: right center;
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+
   transform-origin: right center;
+
   border-left: 1px solid var(--gold);
-  border-right: 2px solid var(--gold);
-  border-top: 2px solid var(--gold);
-  border-bottom: 2px solid var(--gold);
 }
+/* ========================================
+   6. GOLD DECORATIVE FRAMES
+======================================== */
 
-
-/* Inner decorative panels */
 .gate-left::before,
 .gate-right::before {
   content: "";
+
   position: absolute;
-  top: 25%;
-  bottom: 25%;
-  width: 65%;
-  border: 1px solid rgba(232, 213, 168, 1);
+
+  top: 3%;
+  bottom: 3%;
+
+  width: 75%;
+
+  border: 5px solid var(--gold);
+
+  background: transparent;
+
+  box-shadow:
+    0 0 0 5px rgba(197, 161, 107, 0.04),
+    0 0 0 7px rgba(232, 213, 168, 0.16),
+    inset 0 0 35px rgba(0, 0, 0, 0.12);
+
   pointer-events: none;
 }
 
@@ -219,73 +254,46 @@ p {
   right: 18px;
 }
 
-/* gate BG */
-.gate-left,
-.gate-right {
-  background:
-    linear-gradient(
-      135deg,
-      #460e24,
-      #742142,
-      #58112d
-    ) ;
-  box-shadow:
-    inset 0 0 80px rgba(0, 0, 0, 0.28),
-    inset 0 0 15px rgba(232, 213, 168, 0.12);
-}
-
-/* Ornamental inner frame */
-.gate-left::before,
-.gate-right::before {
-  top:3%;
-  bottom: 3%;
-  width: 75%;
-  border: 5px solid var(--gold);
-   background:
-    linear-gradient(
-       135deg,
-      #631f39,
-      #8f395b 45%,
-      #420e22
-    ) !important;
-  box-shadow:
-    0 0 0 5px rgba(197, 161, 107, 0.04),
-    0 0 0 7px rgba(232, 213, 168, 0.16),
-    inset 0 0 35px rgba(0, 0, 0, 0.12);
-}
-
-
-
-
-/* Opening animation */
-
-.envelope.envelope-open .gate-left {
-  transform: rotateY(105deg);
-}
-
-.envelope.envelope-open .gate-right {
-  transform: rotateY(-105deg);
-}
-
-
 /* ========================================
-   5. WAX SEAL
+   7. OPENING ANIMATION
 ======================================== */
 
+/* Left door opens towards left */
+
+.envelope.envelope-open .gate-left {
+  transform: rotateY(-110deg);
+}
+
+/* Right door opens towards right */
+
+.envelope.envelope-open .gate-right {
+  transform: rotateY(110deg);
+}
+
+/* ========================================
+   8. WAX SEAL
+======================================== */
 
 .wax-seal {
   position: absolute;
+
   top: 50%;
   left: 50%;
+
   z-index: 5;
+
   transform: translate(-50%, -50%);
+
   width: 105px;
   height: 105px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 2px solid #b88c58;
   border-radius: 50%;
+
   background:
     radial-gradient(
       circle at 35% 30%,
@@ -293,16 +301,21 @@ p {
       #4d0a1a 60%,
       #310411
     );
+
   color: #f4d9a7;
+
   font-family: 'Cormorant Garamond', serif;
   font-size: 30px;
+
   box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.4),
     inset 0 0 8px rgba(0, 0, 0, 0.2);
+
   animation: sealPulse 2s ease-in-out infinite;
+
   transition:
-    transform 0.25s ease,
-    opacity 0.3s ease;
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 @keyframes sealPulse {
@@ -320,7 +333,6 @@ p {
   letter-spacing: 1px;
 }
 
-
 .wax-seal:active {
   animation: none;
   transform: translate(-50%, -50%) scale(0.94);
@@ -332,30 +344,32 @@ p {
   animation: none;
 }
 
-
-
-
-
 /* ========================================
-   GOLDEN CELEBRATION BURST
+   9. GOLDEN CELEBRATION BURST
 ======================================== */
 
 .celebration {
   position: absolute;
   inset: 0;
   z-index: 30;
+
   display: grid;
   place-items: center;
+
   pointer-events: none;
   overflow: visible;
 }
 
 .celebration span {
   position: absolute;
+
   color: var(--gold-light);
   font-size: 18px;
+
   opacity: 0;
+
   text-shadow: 0 0 10px rgba(232, 213, 168, 0.8);
+
   animation: goldBurst 1.3s ease-out forwards;
   animation-delay: var(--delay);
 }
@@ -386,15 +400,8 @@ p {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .celebration span {
-    animation-duration: 0.4s;
-  }
-}
-
-
 /* ========================================
-   7. HERO SECTION
+   10. HERO SECTION
 ======================================== */
 
 .hero {
@@ -472,8 +479,50 @@ p {
   margin-top: 30px;
 }
 
+/* Scroll indicator */
+
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+
+  width: 25px;
+  height: 40px;
+
+  transform: translateX(-50%);
+
+  z-index: 4;
+}
+
+.scroll-down span {
+  display: block;
+
+  width: 1px;
+  height: 30px;
+
+  margin: auto;
+
+  background: var(--gold);
+
+  animation: scrollLine 1.7s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0%, 100% {
+    transform: scaleY(0.5);
+    transform-origin: top;
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+
 /* ========================================
-   8. COMMON SECTIONS
+   11. COMMON SECTIONS
 ======================================== */
 
 .block {
@@ -511,7 +560,7 @@ p {
 }
 
 /* ========================================
-   9. COUNTDOWN
+   12. COUNTDOWN
 ======================================== */
 
 .count {
@@ -550,7 +599,7 @@ p {
 }
 
 /* ========================================
-   10. OTHER EVENTS
+   13. OTHER EVENTS
 ======================================== */
 
 .events {
@@ -598,7 +647,7 @@ p {
 }
 
 /* ========================================
-   11. WEDDING & RECEPTION CARDS
+   14. WEDDING & RECEPTION CARDS
 ======================================== */
 
 .function-section {
@@ -681,7 +730,7 @@ p {
 }
 
 /* ========================================
-   12. BUTTONS
+   15. BUTTONS
 ======================================== */
 
 .cta {
@@ -712,8 +761,14 @@ p {
   color: var(--gold-light);
 }
 
+.cta:hover {
+  background: var(--gold);
+  color: var(--ink);
+  transform: translateY(-3px);
+}
+
 /* ========================================
-   13. MUSIC CONTROL
+   16. MUSIC CONTROL
 ======================================== */
 
 .mute {
@@ -747,7 +802,7 @@ p {
 }
 
 /* ========================================
-   14. FOOTER
+   17. FOOTER
 ======================================== */
 
 footer {
@@ -785,12 +840,13 @@ footer .dim {
 }
 
 /* ========================================
-   15. SCROLL REVEAL
+   18. SCROLL REVEAL
 ======================================== */
 
 .rv {
   opacity: 0;
   transform: translateY(30px);
+
   transition:
     opacity 0.7s ease,
     transform 0.7s ease;
@@ -802,7 +858,7 @@ footer .dim {
 }
 
 /* ========================================
-   16. MOBILE RESPONSIVE
+   19. MOBILE RESPONSIVE
 ======================================== */
 
 @media (max-width: 760px) {
@@ -817,6 +873,42 @@ footer .dim {
     overflow: hidden;
   }
 
+  /* Gate */
+
+  .envelope-scene {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gate-left,
+  .gate-right {
+    background-size: 200% 100%;
+  }
+
+  .gate-left::before,
+  .gate-right::before {
+    top: 3%;
+    bottom: 3%;
+    width: 82%;
+    border-width: 3px;
+  }
+
+  .gate-left::before {
+    left: 10px;
+  }
+
+  .gate-right::before {
+    right: 10px;
+  }
+
+  .wax-seal {
+    width: 85px;
+    height: 85px;
+    font-size: 26px;
+  }
+
+  /* General sections */
+
   .block {
     padding: 75px 6%;
   }
@@ -824,6 +916,8 @@ footer .dim {
   .band {
     padding: 70px 5%;
   }
+
+  /* Hero */
 
   .hero .h2 {
     font-size: clamp(50px, 14vw, 75px);
@@ -834,6 +928,8 @@ footer .dim {
     font-size: 10px;
     letter-spacing: 2px;
   }
+
+  /* Countdown */
 
   .count {
     gap: 18px;
@@ -847,6 +943,8 @@ footer .dim {
     font-size: 8px;
     letter-spacing: 1px;
   }
+
+  /* Events */
 
   .events li {
     grid-template-columns: 105px 1fr;
@@ -863,6 +961,8 @@ footer .dim {
     font-size: 12px;
   }
 
+  /* Function cards */
+
   .function-card {
     padding: 45px 22px;
   }
@@ -870,6 +970,8 @@ footer .dim {
   .function-venue {
     font-size: 25px;
   }
+
+  /* Music */
 
   .mute {
     right: 12px;
@@ -881,7 +983,7 @@ footer .dim {
 }
 
 /* ========================================
-   17. SMALL MOBILE
+   20. SMALL MOBILE
 ======================================== */
 
 @media (max-width: 360px) {
@@ -895,13 +997,22 @@ footer .dim {
   }
 
   .wax-seal {
-    width: 55px;
-    height: 55px;
+    width: 70px;
+    height: 70px;
+    font-size: 23px;
+  }
+
+  .gate-left::before {
+    left: 6px;
+  }
+
+  .gate-right::before {
+    right: 6px;
   }
 }
 
 /* ========================================
-   18. DESKTOP RESTRICTION
+   21. DESKTOP RESTRICTION
 ======================================== */
 
 @media (min-width: 761px) {
@@ -944,7 +1055,7 @@ footer .dim {
 }
 
 /* ========================================
-   19. ACCESSIBILITY
+   22. ACCESSIBILITY
 ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -959,15 +1070,3 @@ footer .dim {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

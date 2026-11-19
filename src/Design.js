@@ -15,6 +15,7 @@ const W = {
   music: "/audio/wedding-song.mp3",
 
   heroImage: "",
+  gateImage: "/images/gate-image.jpg",
 
   otherEvents: [
     {
@@ -75,7 +76,6 @@ const W = {
 /* ========================================
    REVEAL ANIMATION
 ======================================== */
-
 function useReveal() {
   const ref = useRef(null);
 
@@ -271,9 +271,9 @@ function Hero({ play }) {
       </div>
 
       <a
-        href="#story"
-        className=""
-        aria-label="Scroll to our story"
+        href="#events"
+        className="scroll-down"
+        aria-label="Scroll to wedding celebrations"
       >
         <span />
       </a>
@@ -381,7 +381,6 @@ function Wedding() {
       <Reveal className="center">
         <p className="eyebrow">A NEW BEGINNING</p>
         <h2>{event.title}</h2>
-        <p className="lead">{event.subtitle}</p>
       </Reveal>
 
       <Reveal
@@ -434,7 +433,6 @@ function Reception() {
       <Reveal className="center">
         <p className="eyebrow">Celebrating Togetherness</p>
         <h2>{event.title}</h2>
-        <p className="lead">{event.subtitle}</p>
       </Reveal>
 
       <Reveal
@@ -490,7 +488,9 @@ export default function Design() {
   const switchingRef = useRef(false);
   const openingTimerRef = useRef(null);
 
-  /* LOCK SCROLL UNTIL INVITATION OPENS */
+  /* ========================================
+     LOCK SCROLL UNTIL INVITATION OPENS
+  ======================================== */
 
   useEffect(() => {
     document.body.style.overflow = opened ? "" : "hidden";
@@ -589,22 +589,16 @@ export default function Design() {
 
           clearTimeout(fadeRef.current);
 
-          /* CROSSFADE ANIMATION */
-
           const crossfade = () => {
             const progress = Math.min(
               (performance.now() - startTime) / duration,
               1
             );
 
-            /* CURRENT TRACK FADES OUT */
-
             current.volume = Math.max(
               0,
               startingVolume * (1 - progress)
             );
-
-            /* NEXT TRACK FADES IN */
 
             next.volume = Math.min(
               TARGET_VOLUME,
@@ -639,20 +633,21 @@ export default function Design() {
 
           switchingRef.current = false;
         }
-
       }, 50);
 
     } catch (error) {
       console.log("Audio playback failed:", error);
+
       audioRef.current = null;
       nextAudioRef.current = null;
+
       first.pause();
       second.pause();
     }
   };
 
   /* ========================================
-     OPEN GATES
+     OPEN INVITATION
   ======================================== */
 
   const openInvitation = () => {
@@ -712,7 +707,9 @@ export default function Design() {
 
       <div className="grain" aria-hidden="true" />
 
-      {/* OPENING GATE SCREEN */}
+      {/* ========================================
+          IMAGE GATE SCREEN
+      ======================================== */}
 
       <div className={`gate ${opened ? "gone" : ""}`}>
         <div className="envelope-scene">
@@ -722,18 +719,36 @@ export default function Design() {
               envelopeOpened ? "envelope-open" : ""
             }`}
           >
+
             {/* Background behind the doors */}
 
             <div className="envelope-back" />
 
-            {/* Two inward-opening doors */}
+            {/* TWO IMAGE DOORS */}
 
             <div className="envelope-pocket">
-              <div className="gate-left" />
-              <div className="gate-right" />
+
+              {/* LEFT HALF */}
+
+              <div
+                className="gate-left"
+                style={{
+                  backgroundImage: `url("${W.gateImage}")`,
+                }}
+              />
+
+              {/* RIGHT HALF */}
+
+              <div
+                className="gate-right"
+                style={{
+                  backgroundImage: `url("${W.gateImage}")`,
+                }}
+              />
+
             </div>
 
-            {/* Initials wax seal */}
+            {/* WAX SEAL */}
 
             {!envelopeOpened && (
               <button
@@ -749,10 +764,11 @@ export default function Design() {
 
           </div>
         </div>
-
       </div>
 
-      {/* MUSIC CONTROL */}
+      {/* ========================================
+          MUSIC CONTROL
+      ======================================== */}
 
       {opened && W.music && (
         <button
@@ -766,7 +782,9 @@ export default function Design() {
         </button>
       )}
 
-      {/* MAIN WEDDING WEBSITE */}
+      {/* ========================================
+          MAIN WEDDING WEBSITE
+      ======================================== */}
 
       <main>
         <Hero play={opened} />
@@ -780,13 +798,15 @@ export default function Design() {
         <Reception />
       </main>
 
-      {/* FOOTER */}
+      {/* ========================================
+          FOOTER
+      ======================================== */}
 
-      <footer className="center">       
+      <footer className="center">
         <p className="footer-note">
-         "With our families' blessings, join us in celebrating a beautiful new beginning."
+          "With our families' blessings, join us in celebrating a beautiful new beginning."
         </p>
-        
+
         <p className="fn">
           {W.groom} <i>&</i> {W.bride}
         </p>
@@ -794,10 +814,3 @@ export default function Design() {
     </>
   );
 }
-
-
-
-
-
-
-
