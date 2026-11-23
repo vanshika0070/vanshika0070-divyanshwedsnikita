@@ -110,7 +110,7 @@ h1 {
 h2 {
   font-size: clamp(42px, 8vw, 76px);
   line-height: 1.05;
-  color: var(--gold-light);
+  color: var(--ink);
 }
 
 h3 {
