@@ -87,7 +87,7 @@ function FunctionCard({ event, reception = false }) {
         <p className="eyebrow">
           {reception
             ? "Celebrating Togetherness"
-            : "A NEW BEGINNING"}
+            : "A New Beginning"}
         </p>
 
         <h2>{event.title}</h2>
