@@ -3,8 +3,7 @@ import { useState, useRef } from "react";
 import Gate from "./Gate";
 import Hero from "./Hero";
 import Invitation from "./Invitation";
-import Countdown from "./Countdown";
-import OtherEvents from "./OtherEvents";
+import Countdown from "./Countdown"
 import Events from "./Events";
 import Footer from "./Footer";
 import Music from "./Music";
@@ -36,7 +35,6 @@ function App() {
             <div className="area">
             <Invitation />
             <Countdown />
-            <OtherEvents />
             <Events />
             <Footer />
             </div>

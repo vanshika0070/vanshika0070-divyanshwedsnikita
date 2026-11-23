@@ -30,7 +30,7 @@ const W = {
     venue: "The Sultan Farm",
     address: "Bajghera Toll Road, New Delhi",
     mapUrl:
-      "https://www.google.com/maps/place/%E0%A4%A5%E0%A5%87+%E0%A4%B8%E0%A5%81%E0%A4%B2%E0%A5%8D%E0%A4%A4%E0%A4%BE%E0%A4%A8/@28.5412717,77.0112755,17z/",
+      "https://www.google.com/maps?newwindow=1&sca_esv=e14f145c069ef099&output=search&q=the+sultan+farm&source=lnms&fbs=ACAhTvwdifjn2dKXmjtOfBxVFl_kNo0J7LRbgf5U9cgi9kOJRhZo2b70ls_k56Dkh0A5OtJegGIHMIMFCNFtJWuVvm9XohLjxdVeq6V-Ir1IOM_FZOXK_HTbdH11wNdYqIBlGluN1HbZ2Ay2j6wBz6isfpdhOY7odu9uB5b4dht_VtNrZnyoKtyReZOcLtrDQZboJMd-pg8vwkCAIViVa0RbhXBMlgt-0Q&entry=mc&ved=1t:200715&ictx=111"
   },
 };
 
