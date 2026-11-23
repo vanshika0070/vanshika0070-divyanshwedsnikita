@@ -15,11 +15,11 @@ export default function Invitation() {
         </div>
 
         {/* Family invitation */}
-        <p className="invitation-family">Manav’s Family</p>
+        <p className="invitation-family">Manav Family</p>
 
         <p className="invitation-text">
-          Cordially request the honour of your presence at the wedding of
-          their children, and your blessings as they walk into a new life together.
+          With immense joy and the blessings of the Almighty,
+cordially invite you to celebrate the wedding of their beloved son
         </p>
 
             {/* Groom */}
@@ -38,6 +38,8 @@ export default function Invitation() {
         <p className="invitation-parents">
           D/o Smt.Sangeeta &amp; Sh.Rohtas Verma
         </p>
+
+        <p>As they embark on a beautiful journey of love, togetherness, and lifelong companionship, your gracious presence and blessings will make this occasion truly special.</p>
 
         {/* Blessing */}
         <p className="invitation-blessing">
