@@ -31,7 +31,7 @@ html {
 
 
 body {
-  background-image: url("../public/images/bg.jpg") !important; 
+  background-image: url("../public/images/bg.webp") !important; 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -183,7 +183,7 @@ p {
   top: 0;
   width: 50%;
   height: 100%;
-  background-image: url("../public/images/wedding-gates.png") !important; 
+  background-image: url("../public/images/wedding-gates.webp") !important; 
   background-repeat: no-repeat;
   background-size: 200% 100%;
   backface-visibility: hidden;
@@ -407,7 +407,7 @@ p {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background-image: url("../public/images/hero.png");
+  background-image: url("../public/images/hero.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1079,7 +1079,7 @@ font-weight: 500;
       var(--ink) 75%
     );
 
-    color: var(--gold);
+    color: var(--ink);
 
     font: italic 2rem 'Cormorant Garamond', serif;
     text-align: center;
