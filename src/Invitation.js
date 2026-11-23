@@ -39,7 +39,6 @@ cordially invite you to celebrate the wedding of their beloved son
           D/o Smt.Sangeeta &amp; Sh.Rohtas Verma
         </p>
 
-         <p className="invitation-text">As they embark on a beautiful journey of love, togetherness, and lifelong companionship, your gracious presence and blessings will make this occasion truly special.</p>
 
         {/* Blessing */}
         <p className="invitation-blessing">
